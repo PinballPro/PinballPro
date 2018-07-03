@@ -148,6 +148,7 @@
   <ItemGroup>
     <ClCompile Include="ballPro.cpp" />
     <ClCompile Include="ceshi.cpp" />
+    <ClCompile Include="测试2.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
