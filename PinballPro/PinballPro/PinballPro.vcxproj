@@ -149,6 +149,7 @@
     <ClCompile Include="ballPro.cpp" />
     <ClCompile Include="ceshi.cpp" />
     <ClCompile Include="测试2.cpp" />
+    <ClCompile Include="测试提取与拉取.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
