@@ -31,7 +31,7 @@ public:
 		return this->ball_status;
 	}
 
-	//init function:when created an instance then print logs and its memory address of this instance
+	//init function:when created an instance then print logs and its memory address
 	BallPro() {
 		clog << "created one instance of class BallPro @" << this;
 	}
