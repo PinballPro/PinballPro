@@ -30,7 +30,7 @@
     <ClCompile Include="testGC.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="test1.cpp">
+    <ClCompile Include="test12.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

@@ -152,7 +152,6 @@
     <ClCompile Include="testGC.cpp" />
     <ClCompile Include="测试2.cpp" />
     <ClCompile Include="测试提取与拉取.cpp" />
-    <ClCompile Include="test1.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
