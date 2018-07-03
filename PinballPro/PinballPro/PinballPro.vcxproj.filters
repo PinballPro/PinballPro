@@ -18,19 +18,7 @@
     <ClCompile Include="ballPro.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="ceshi.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="测试2.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="测试提取与拉取.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="testGC.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="test12.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
