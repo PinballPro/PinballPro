@@ -1,4 +1,4 @@
-#include "QtTest.h"
+﻿#include "QtTest.h"
 
 QtTest::QtTest(QWidget *parent)
 	: QMainWindow(parent)

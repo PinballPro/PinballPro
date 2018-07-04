@@ -1,17 +1,21 @@
-#include <QCoreApplication>
+﻿#include <QApplication>
 #include <QDebug>
 #include <iostream>
 #include "newspaper.h"
 #include "reader.h"
+#include "mainwindow.h"
+#include "sswindow.h"
 using namespace std;
 
 int main(int argc, char *argv[])
 {
-	QCoreApplication app(argc, argv);
+	QApplication app(argc, argv);
 
-	Newspaper newspaper("WuHan Newspaper");
-	Reader reader;
-	QObject::connect(&newspaper, &Newspaper::newPaper, &reader, &Reader::receiveNewsPaper);
-	newspaper.send();
+	MainWindow win;
+	win.show();
+
+	SSwindow sswin;
+	sswin.show();
+
 	return app.exec();
 }

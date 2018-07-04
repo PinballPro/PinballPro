@@ -36,6 +36,12 @@
     <ClCompile Include="QtTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="mainwindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SSwindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QtTest.h">
@@ -45,6 +51,12 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="reader.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="mainwindow.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="sswindow.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
