@@ -21,5 +21,8 @@
     <ClCompile Include="测试提取与拉取.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="QtTest.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
