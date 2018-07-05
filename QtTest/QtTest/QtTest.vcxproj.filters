@@ -42,6 +42,12 @@
     <ClCompile Include="SSwindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="useragedialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="database_utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QtTest.h">
@@ -59,6 +65,9 @@
     <QtMoc Include="sswindow.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="useragedialog.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="QtTest.ui">
@@ -69,5 +78,10 @@
     <QtRcc Include="QtTest.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="database_utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

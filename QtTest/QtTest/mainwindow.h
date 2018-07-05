@@ -14,7 +14,10 @@ public:
 
 private:
 	void open();
+	void showUserAgeDialog();
+	void setUserAge(int);
 	QAction *openAction;
+	int userAge;
 };
 
 

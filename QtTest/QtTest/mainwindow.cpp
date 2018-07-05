@@ -9,6 +9,7 @@
 
 #endif
 #include"mainwindow.h"
+#include"useragedialog.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 	this->resize(QSize(800, 600));
@@ -22,14 +23,33 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 	QMenu *file = menuBar()->addMenu(tr("&choose a file"));
 	file->addAction(openAction);
 
-	QToolBar * toolBar = addToolBar(tr("&choose a file"));
-	toolBar->addAction(openAction);
+	QToolBar * toolBar1 = addToolBar(tr("&choose a file"));
+	toolBar1->addAction(openAction);
+
+	QToolBar * toolBar2 = addToolBar(tr("Tool Bar 2"));
+	toolBar2->addAction(openAction);
 
 	statusBar();
+
+	this->showUserAgeDialog();
 }
 
 MainWindow::~MainWindow() {};
 
 void MainWindow::open() {
 	QMessageBox::information(this, tr("Information"), tr("Open"));
+	QDialog *dialog = new QDialog;
+	dialog->setAttribute(Qt::WA_DeleteOnClose);
+	dialog->setWindowTitle("Using a dialog");
+	dialog->show();
+}
+
+void  MainWindow::showUserAgeDialog() {
+	UserAgeDialog *dialog = new UserAgeDialog(this);
+	connect(dialog, &UserAgeDialog::userAgeChanged, this, &MainWindow::setUserAge);
+	dialog->show();
+}
+
+void MainWindow::setUserAge(int newAge) {
+	this->userAge = newAge;
 }
