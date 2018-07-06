@@ -1,4 +1,5 @@
 <RCC>
-    <qresource prefix="QtTest">
+    <qresource prefix="/">
+        <file>Resources/images/ico/dictionary.ico</file>
     </qresource>
 </RCC>
