@@ -30,7 +30,13 @@ public:
 	int getBallStatus(void) {
 		return this->ball_status;
 	}
+
+	//init function:when created an instance then print logs and its memory address
+	BallPro() {
+		clog << "created one instance of class BallPro @" << this;
+	}
 };
+
 
 
 
