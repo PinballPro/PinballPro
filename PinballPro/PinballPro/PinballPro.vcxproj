@@ -150,6 +150,10 @@
     <ClCompile Include="ceshi.cpp" />
     <ClCompile Include="测试2.cpp" />
     <ClCompile Include="测试提取与拉取.cpp" />
+    <ClCompile Include="砖块.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="class.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

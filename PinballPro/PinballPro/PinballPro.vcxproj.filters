@@ -27,5 +27,13 @@
     <ClCompile Include="测试提取与拉取.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="砖块.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="class.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
