@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Resources/blackjava.ico</file>
+    </qresource>
+</RCC>
