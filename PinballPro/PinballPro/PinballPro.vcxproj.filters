@@ -18,13 +18,10 @@
     <ClCompile Include="ballPro.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="ceshi.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="测试2.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="测试提取与拉取.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="QtTest.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="砖块.cpp">
