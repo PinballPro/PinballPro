@@ -5,9 +5,11 @@
         <file>Resources/images/menu/menu.jpg</file>
         <file>Resources/images/icon/setting.png</file>
         <file>Resources/images/icon/about.png</file>
-        <file>Resources/images/icon/buttonCursor.png</file>
         <file>Resources/images/icon/cursor.png</file>
         <file>Resources/images/icon/gallery.png</file>
         <file>Resources/images/icon/left170.png</file>
+        <file>Resources/images/icon/left42.png</file>
+        <file>Resources/images/icon/bgmOn.png</file>
+        <file>Resources/images/icon/bgmOff.png</file>
     </qresource>
 </RCC>

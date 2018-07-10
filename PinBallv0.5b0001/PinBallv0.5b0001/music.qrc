@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Resources/bgm/menuBGM.mp3</file>
+        <file>Resources/sound/reButton.wav</file>
+        <file>Resources/sound/stepButton.wav</file>
+    </qresource>
+</RCC>

@@ -48,5 +48,16 @@
     <QtRcc Include="PinBallv05b0001.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
+    <QtRcc Include="music.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="PinBallv0.5b0001.rc" />
   </ItemGroup>
 </Project>

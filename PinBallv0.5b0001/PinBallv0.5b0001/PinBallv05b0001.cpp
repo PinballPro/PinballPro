@@ -7,16 +7,20 @@
 #include<QToolButton>
 #include<QMessageBox>
 #include<QMouseEvent>
+#include<QMediaPlayer>
+#include<QMediaPlaylist>
 #include"logicController.h"
 #include "PinBallv05b0001.h"
-
 PinBallv05b0001::PinBallv05b0001(QWidget *parent)
 	: QMainWindow(parent),
 	scene(new QGraphicsScene(this)),
-	view(new QGraphicsView(scene,this)),
-	baseController(new LogicController(*scene,this)),
+	view(new QGraphicsView(scene, this)),
+	baseController(new LogicController(*scene, this)),
 	isDebug(false),
-	layout(new QGridLayout(view))
+	layout(new QGridLayout(view)),
+	bgmController(new QMediaPlayer(this)),
+	soundController(new QMediaPlayer(this)),
+	isBGMmute(false)
 {	
 	this->setObjectName("mainWindow");
 	setCentralWidget(view);
@@ -37,8 +41,19 @@ PinBallv05b0001::~PinBallv05b0001() {};
 void PinBallv05b0001::createMenu() {
 	//this->setStyleSheet("PinBallv05b0001#mainWindow{border-image:url(Resources/images/menu/menu.jpg)}");
 	destroyMenuChildButtons();
-	
+	destroyMenuChildLabels();
+
 	layout->setMargin(0);
+
+	//加载BGM
+	auto list = new QMediaPlaylist(this);
+	list->addMedia(QUrl("qrc:/Resources/bgm/menuBGM.mp3"));
+	list->setPlaybackMode(QMediaPlaylist::Loop);
+	if (bgmController->playlist() == NULL) {
+		bgmController->setPlaylist(list);
+		bgmController->setVolume(20);
+		bgmController->play();
+	}
 
 	//设置鼠标光标
 	QCursor cursor;
@@ -67,7 +82,7 @@ void PinBallv05b0001::createMenu() {
 	startButton->setStyleSheet("QToolButton#startButton{background:transparent;color:#66ccff;}QToolButton#startButton:hover{color:red;font-size:36px;}");
 	layout->addWidget(startButton, 3, 2, 2, 4, Qt::AlignCenter);
 	connect(startButton, &QToolButton::clicked, this, &PinBallv05b0001::initGameMenu);
-
+	connect(startButton, &QToolButton::clicked, this, &PinBallv05b0001::playStepButtonSE);
 
 	//调试模式按钮
 	QToolButton *debugButton = new QToolButton(this);
@@ -77,6 +92,7 @@ void PinBallv05b0001::createMenu() {
 	debugButton->setStyleSheet("QToolButton#debugButton{background:transparent;color:gray;}QToolButton#debugButton:hover{color:red;}");
 	layout->addWidget(debugButton, 4, 2, 2, 4, Qt::AlignCenter);
 	connect(debugButton, &QToolButton::clicked, this, &PinBallv05b0001::toggleDebugMode);
+	connect(debugButton, &QToolButton::clicked, this, &PinBallv05b0001::playStepButtonSE);
 
 	//退出游戏按钮
 	QToolButton *exitButton = new QToolButton(this);
@@ -86,6 +102,7 @@ void PinBallv05b0001::createMenu() {
 	exitButton->setStyleSheet("QToolButton#exitButton{background:transparent;color:#fffbf0;}QToolButton#exitButton:hover{color:red;font-size:36px}");
 	layout->addWidget(exitButton, 5, 2, 2, 4, Qt::AlignCenter);
 	connect(exitButton, &QToolButton::clicked, this, &PinBallv05b0001::close);
+	connect(exitButton, &QToolButton::clicked, this, &PinBallv05b0001::playStepButtonSE);
 
 	//about按钮
 	QToolButton *aboutButton = new QToolButton(this);
@@ -95,6 +112,7 @@ void PinBallv05b0001::createMenu() {
 	aboutButton->setStyleSheet("QToolButton#aboutButton{background:transparent;}");
 	layout->addWidget(aboutButton, 7, 6, 1, 1, Qt::AlignCenter);
 	connect(aboutButton, &QToolButton::clicked, this, &PinBallv05b0001::about);
+	connect(aboutButton, &QToolButton::clicked, this, &PinBallv05b0001::playStepButtonSE);
 
 	//setting按钮
 	QToolButton *settingButton = new QToolButton(this);
@@ -104,15 +122,26 @@ void PinBallv05b0001::createMenu() {
 	settingButton->setStyleSheet("QToolButton#settingButton{background:transparent;}");
 	layout->addWidget(settingButton, 7, 7, 1, 1,Qt::AlignCenter);
 	connect(settingButton, &QToolButton::clicked, this, &PinBallv05b0001::setting);
+	connect(settingButton, &QToolButton::clicked, this, &PinBallv05b0001::playStepButtonSE);
 
 	//gallery按钮
 	QToolButton *galleryButton = new QToolButton(this);
 	galleryButton->setIcon(QIcon(":/Resources/images/icon/gallery.png"));
-	galleryButton->setIconSize(QSize(100, 100));
+	galleryButton->setIconSize(QSize(90, 90));
 	galleryButton->setObjectName("galleryButton");
 	galleryButton->setStyleSheet("QToolButton#galleryButton{background:transparent;}");
 	layout->addWidget(galleryButton, 6, 0, 2, 2, Qt::AlignBottom);
 	connect(galleryButton, &QToolButton::clicked, this, &PinBallv05b0001::gallery);
+	connect(galleryButton, &QToolButton::clicked, this, &PinBallv05b0001::playStepButtonSE);
+
+	//切换BGM静音状态
+	QToolButton *toggleBGMbutton = new QToolButton(this);
+	toggleBGMbutton->setIcon(QIcon(":/Resources/images/icon/bgmOn.png"));
+	toggleBGMbutton->setIconSize(QSize(34,34));
+	toggleBGMbutton->setObjectName("toggleBGMbutton");
+	toggleBGMbutton->setStyleSheet("QToolButton#toggleBGMbutton{background:transparent;}");
+	layout->addWidget(toggleBGMbutton, 7, 5, 1, 1, Qt::AlignCenter);
+	connect(toggleBGMbutton, &QToolButton::clicked, this, &PinBallv05b0001::toggleBGM);
 }
 
 void PinBallv05b0001::about() {
@@ -123,6 +152,15 @@ void PinBallv05b0001::about() {
 	this->setStyleSheet("background-image:url(Resources/images/about/about.jpg)");//about暂缺
 	
 	QLabel *aboutLabel = new QLabel(this);
+	aboutLabel->setText(tr("<p>CopyRight &copy;PinBallPro. "
+		"<p>This Game is designed to "
+		"<p>develop the abiity of software programming."
+		"<p>based on the Github by our team PinBallPro."
+		));
+	aboutLabel->setFont(QFont("Algerian", 12));
+	aboutLabel->setFixedSize(500, 200);
+	aboutLabel->setStyleSheet("background:transparent;");
+	layout->addWidget(aboutLabel, 2, 1, 3, 6, Qt::AlignCenter);
 
 	QToolButton *returnButton = new QToolButton(this);
 	returnButton->setIcon(QIcon(":/Resources/images/icon/left170.png"));
@@ -134,15 +172,33 @@ void PinBallv05b0001::about() {
 }
 
 void PinBallv05b0001::gallery() {
+	destroyMenuChildButtons();
+	destroyMenuChildLabels();
 
+	QToolButton *returnButton = new QToolButton(this);
+	returnButton->setIcon(QIcon(":/Resources/images/icon/left42.png"));
+	returnButton->setIconSize(QSize(100, 100));
+	returnButton->setObjectName("returnButton");
+	returnButton->setStyleSheet("QToolButton#returnButton{background:transparent}");
+	layout->addWidget(returnButton, 6, 3, 2, 2, Qt::AlignCenter);
+	connect(returnButton, &QToolButton::clicked, this, &PinBallv05b0001::createMenu);
 }
 
 void PinBallv05b0001::setting() {
+	destroyMenuChildButtons();
 
+	QToolButton *returnButton = new QToolButton(this);
+	returnButton->setIcon(QIcon(":/Resources/images/icon/left42.png"));
+	returnButton->setIconSize(QSize(100, 100));
+	returnButton->setObjectName("returnButton");
+	returnButton->setStyleSheet("QToolButton#returnButton{background:transparent}");
+	layout->addWidget(returnButton, 6, 3, 2, 2, Qt::AlignCenter);
+	connect(returnButton, &QToolButton::clicked, this, &PinBallv05b0001::createMenu);
 }
 
 void PinBallv05b0001::initGameMenu() {
 	destroyMenuChildButtons();
+	//destroyMenuChildLabels();祛除标题
 	this->setStyleSheet("background-image:url(Resources/images/menu/gameMenu.jpg)");
 
 	QToolButton *returnButton = new QToolButton(this);
@@ -151,6 +207,7 @@ void PinBallv05b0001::initGameMenu() {
 	returnButton->setObjectName("returnButton");
 	returnButton->setStyleSheet("QToolButton#returnButton{background:transparent}");
 	layout->addWidget(returnButton, 6, 3, 2, 2, Qt::AlignCenter);
+	connect(returnButton, &QToolButton::clicked, this, &PinBallv05b0001::playReturnButtonSE);
 	connect(returnButton, &QToolButton::clicked, this, &PinBallv05b0001::createMenu);
 }
 
@@ -164,6 +221,14 @@ void PinBallv05b0001::destroyMenuChildButtons() {
 	foreach(QToolButton *childButton, childButtons) {
 		disconnect(childButton);//断开此button的所有连接
 		childButton->deleteLater();
+	}
+}
+
+void PinBallv05b0001::destroyMenuChildLabels() {
+	QList<QLabel *> childLabels = this->findChildren<QLabel *>();
+	foreach(QLabel *childLabel, childLabels) {
+		disconnect(childLabel);
+		childLabel->deleteLater();
 	}
 }
 
@@ -224,3 +289,41 @@ void PinBallv05b0001::keyReleaseEvent(QKeyEvent *event) {
 	}
 }
 
+void PinBallv05b0001::setBGMVolume(int volume) {
+	bgmController->setVolume(volume);
+}
+
+void PinBallv05b0001::toggleBGM() {
+	QToolButton *toggleBGMbutton = this->findChild<QToolButton *>("toggleBGMbutton");
+	disconnect(toggleBGMbutton);
+	if (isBGMmute) {
+		this->setBGMVolume(20);
+		toggleBGMbutton->setIcon(QIcon(":/Resources/images/icon/bgmOn.png"));
+		toggleBGMbutton->setIconSize(QSize(34,34));
+		isBGMmute = false;
+	}
+	else {
+		this->setBGMVolume();//默认0
+		toggleBGMbutton->setIcon(QIcon(":/Resources/images/icon/bgmOff.png"));
+		toggleBGMbutton->setIconSize(QSize(40, 40));
+		isBGMmute = true;
+	}
+}
+
+void PinBallv05b0001::playReturnButtonSE() {
+	auto list = new QMediaPlaylist(this);
+	list->addMedia(QUrl("qrc:/Resources/sound/reButton.wav"));
+	list->setPlaybackMode(QMediaPlaylist::CurrentItemOnce);
+	soundController->setPlaylist(list);
+	soundController->setVolume(80);
+	soundController->play();
+}
+
+void PinBallv05b0001::playStepButtonSE() {
+	auto list = new QMediaPlaylist(this);
+	list->addMedia(QUrl("qrc:/Resources/sound/stepButton.wav"));
+	list->setPlaybackMode(QMediaPlaylist::CurrentItemOnce);
+	soundController->setPlaylist(list);
+	soundController->setVolume(80);
+	soundController->play();
+}

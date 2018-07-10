@@ -6,6 +6,7 @@ class QGraphicsScene;
 class QGraphicsView;
 class LogicController;
 class QGridLayout;
+class QMediaPlayer;
 
 class PinBallv05b0001 : public QMainWindow
 {
@@ -25,6 +26,14 @@ private slots:
 	void initGameMenu();//进入开始游戏菜单
 	void createMenu();//创建菜单
 	void destroyMenuChildButtons();//销毁每个menu下的按钮控件以便形成新按钮控件
+	void destroyMenuChildLabels();//销毁每个menu下的标签控件以便布局管理器腾出空间
+	void setBGMVolume(int volume = 0);//设置BGM音量，默认0
+	void toggleBGM();//切换BGM静音状态
+	void playReturnButtonSE();//退回按钮音效播放
+	void playStepButtonSE();//步进按钮音效播放
+	void SkinMenu();//menu-gallery-skinmenu
+	void repertoire();//技能树 menu-gallery-repertoire
+	void achivementPage();//成就 menu-gallery-achivementPage
 
 protected:
 	void mousePressEvent(QMouseEvent *event);
@@ -54,5 +63,10 @@ private:
 
 	//layout排版
 	QGridLayout *layout;
+
+	//音频播放器
+	QMediaPlayer *bgmController;
+	QMediaPlayer *soundController;
+	bool isBGMmute;
 };
 #endif // !PINBALLV05B0001_H
