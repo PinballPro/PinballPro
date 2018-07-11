@@ -2,6 +2,7 @@
 #include <QSqlDatabase>
 #include <QMessageBox>
 #include <QSqlQuery>
+#include <QSqlError>
 #include <QMap>
 #include <QMapIterator>
 //连接至数据库pinballpro_db@localhost:3306 db_version:mysql

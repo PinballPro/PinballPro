@@ -11,5 +11,11 @@
         <file>Resources/images/icon/left42.png</file>
         <file>Resources/images/icon/bgmOn.png</file>
         <file>Resources/images/icon/bgmOff.png</file>
+        <file>Resources/images/icon/wardrobe.png</file>
+        <file>Resources/images/menu/gallery.jpg</file>
+        <file>Resources/images/icon/defaultPortrait.png</file>
+        <file>Resources/images/about/about.jpg</file>
+        <file>Resources/images/icon/rankList.png</file>
+        <file>Resources/images/icon/volume.png</file>
     </qresource>
 </RCC>
