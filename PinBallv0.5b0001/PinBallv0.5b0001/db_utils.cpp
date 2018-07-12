@@ -103,7 +103,10 @@ bool DB_Utils::sign_in(QString player_name,QString password) {
 		QString update_sign_in_time = "Update player_info set last_sign_in_time = ? where player_name = ? and password = ?";
 		params.push_front(QString::QString(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss")));
 		this->execSql(update_sign_in_time, params);
-		initCurrentPlayerInfo(result);//存储当前角色信息
+		params.removeFirst();
+		QString infoSql = "Select * from player_repertoire where player_name = ? and password = ?";
+		QSqlQuery expandResult = this->query_player(infoSql, params);
+		initCurrentPlayerInfo(expandResult);//存储当前角色信息
 		return true;
 	}
 	else {
@@ -121,7 +124,10 @@ bool DB_Utils::sign_in(QString player_name,QString password) {
 			this->execSql(register_repertoire, params);
 			params.removeLast();
 			params.removeLast();
-			initCurrentPlayerInfo(this->query_player(sql, params));//存储当前玩家信息
+
+			QString infoSql = "Select * from player_repertoire where player_name = ? and password = ?";
+			QSqlQuery expandResult = this->query_player(infoSql, params);
+			initCurrentPlayerInfo(expandResult);//存储当前角色信息
 			return true;
 		}
 		else return false;
@@ -134,4 +140,10 @@ void DB_Utils::initCurrentPlayerInfo(QSqlQuery result) {
 	QString highest_score = result.value(2).toString();
 	QString total_rounds = result.value(3).toString();
 	this->currentPlayer = new Player(player_name, password, highest_score, total_rounds);
+}
+
+void DB_Utils::saveGameInfo(int score, int rounds) {
+	QList<QString> params;
+	params.append(currentPlayer->player_name);
+	params.append(currentPlayer->getPassword());
 }

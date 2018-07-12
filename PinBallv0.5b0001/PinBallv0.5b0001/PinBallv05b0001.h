@@ -18,6 +18,9 @@ public:
 	PinBallv05b0001(QWidget *parent = Q_NULLPTR);
 	~PinBallv05b0001();
 
+	double xMouse, yMouse, zMouse;
+	void GameOver();//一局游戏结束保存游戏信息及显示结果
+
 private slots:
 	void loginPage();//登录界面
 	void signIn();//签入
@@ -53,15 +56,12 @@ protected:
 
 private:
 
+	//开始游戏初始化scene
+	void initScene();
+
 	QGraphicsScene *scene;
 	QGraphicsView *view;
 	LogicController *baseController;
-
-	//Actions
-	QAction *pauseAction;
-	QAction *resumeAction;
-	QAction *exitAction;
-	QAction *aboutAciton;
 
 	//Flags
 	bool isDebug;

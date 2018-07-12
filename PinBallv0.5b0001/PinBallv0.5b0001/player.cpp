@@ -11,3 +11,7 @@ Player::Player(QString player_name, QString password, QString highest_score, QSt
 	this->highest_score = highest_score;
 	this->total_rounds = total_rounds;
 }
+
+QString Player::getPassword() {
+	return this->password;
+}

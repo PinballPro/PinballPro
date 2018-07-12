@@ -11,6 +11,7 @@ public:
 
 	bool sign_in(QString playerName, QString );
 	void initCurrentPlayerInfo(QSqlQuery result);
+	void saveGameInfo(int score, int rounds);
 
 	Player *currentPlayer;
 private:

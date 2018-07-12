@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_PinBallv05b0001_t {
-    QByteArrayData data[26];
-    char stringdata0[334];
+    QByteArrayData data[25];
+    char stringdata0[323];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -38,36 +38,35 @@ QT_MOC_LITERAL(3, 27, 6), // "signIn"
 QT_MOC_LITERAL(4, 34, 10), // "createMenu"
 QT_MOC_LITERAL(5, 45, 10), // "returnMenu"
 QT_MOC_LITERAL(6, 56, 5), // "about"
-QT_MOC_LITERAL(7, 62, 7), // "gallery"
-QT_MOC_LITERAL(8, 70, 15), // "toggleDebugMode"
-QT_MOC_LITERAL(9, 86, 12), // "initGameMenu"
-QT_MOC_LITERAL(10, 99, 12), // "initFastMode"
-QT_MOC_LITERAL(11, 112, 12), // "initItemMode"
-QT_MOC_LITERAL(12, 125, 15), // "initCthulhuMode"
-QT_MOC_LITERAL(13, 141, 7), // "setting"
-QT_MOC_LITERAL(14, 149, 15), // "settingBackMenu"
-QT_MOC_LITERAL(15, 165, 23), // "destroyMenuChildButtons"
-QT_MOC_LITERAL(16, 189, 22), // "destroyMenuChildLabels"
-QT_MOC_LITERAL(17, 212, 20), // "destroyMenuChildEdit"
-QT_MOC_LITERAL(18, 233, 12), // "setBGMVolume"
-QT_MOC_LITERAL(19, 246, 6), // "volume"
-QT_MOC_LITERAL(20, 253, 9), // "toggleBGM"
-QT_MOC_LITERAL(21, 263, 18), // "playReturnButtonSE"
-QT_MOC_LITERAL(22, 282, 16), // "playStepButtonSE"
-QT_MOC_LITERAL(23, 299, 8), // "Wardrobe"
-QT_MOC_LITERAL(24, 308, 10), // "Repertoire"
-QT_MOC_LITERAL(25, 319, 14) // "AchivementPage"
+QT_MOC_LITERAL(7, 62, 15), // "toggleDebugMode"
+QT_MOC_LITERAL(8, 78, 12), // "initGameMenu"
+QT_MOC_LITERAL(9, 91, 12), // "initFastMode"
+QT_MOC_LITERAL(10, 104, 12), // "initItemMode"
+QT_MOC_LITERAL(11, 117, 15), // "initCthulhuMode"
+QT_MOC_LITERAL(12, 133, 7), // "setting"
+QT_MOC_LITERAL(13, 141, 15), // "settingBackMenu"
+QT_MOC_LITERAL(14, 157, 7), // "gallery"
+QT_MOC_LITERAL(15, 165, 8), // "Wardrobe"
+QT_MOC_LITERAL(16, 174, 14), // "AchivementPage"
+QT_MOC_LITERAL(17, 189, 23), // "destroyMenuChildButtons"
+QT_MOC_LITERAL(18, 213, 22), // "destroyMenuChildLabels"
+QT_MOC_LITERAL(19, 236, 20), // "destroyMenuChildEdit"
+QT_MOC_LITERAL(20, 257, 12), // "setBGMVolume"
+QT_MOC_LITERAL(21, 270, 6), // "volume"
+QT_MOC_LITERAL(22, 277, 9), // "toggleBGM"
+QT_MOC_LITERAL(23, 287, 18), // "playReturnButtonSE"
+QT_MOC_LITERAL(24, 306, 16) // "playStepButtonSE"
 
     },
     "PinBallv05b0001\0loginPage\0\0signIn\0"
-    "createMenu\0returnMenu\0about\0gallery\0"
-    "toggleDebugMode\0initGameMenu\0initFastMode\0"
-    "initItemMode\0initCthulhuMode\0setting\0"
-    "settingBackMenu\0destroyMenuChildButtons\0"
-    "destroyMenuChildLabels\0destroyMenuChildEdit\0"
-    "setBGMVolume\0volume\0toggleBGM\0"
-    "playReturnButtonSE\0playStepButtonSE\0"
-    "Wardrobe\0Repertoire\0AchivementPage"
+    "createMenu\0returnMenu\0about\0toggleDebugMode\0"
+    "initGameMenu\0initFastMode\0initItemMode\0"
+    "initCthulhuMode\0setting\0settingBackMenu\0"
+    "gallery\0Wardrobe\0AchivementPage\0"
+    "destroyMenuChildButtons\0destroyMenuChildLabels\0"
+    "destroyMenuChildEdit\0setBGMVolume\0"
+    "volume\0toggleBGM\0playReturnButtonSE\0"
+    "playStepButtonSE"
 };
 #undef QT_MOC_LITERAL
 
@@ -77,7 +76,7 @@ static const uint qt_meta_data_PinBallv05b0001[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      24,   14, // methods
+      23,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -85,30 +84,29 @@ static const uint qt_meta_data_PinBallv05b0001[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  134,    2, 0x08 /* Private */,
-       3,    0,  135,    2, 0x08 /* Private */,
-       4,    0,  136,    2, 0x08 /* Private */,
-       5,    0,  137,    2, 0x08 /* Private */,
-       6,    0,  138,    2, 0x08 /* Private */,
-       7,    0,  139,    2, 0x08 /* Private */,
-       8,    0,  140,    2, 0x08 /* Private */,
-       9,    0,  141,    2, 0x08 /* Private */,
-      10,    0,  142,    2, 0x08 /* Private */,
-      11,    0,  143,    2, 0x08 /* Private */,
-      12,    0,  144,    2, 0x08 /* Private */,
-      13,    0,  145,    2, 0x08 /* Private */,
-      14,    0,  146,    2, 0x08 /* Private */,
-      15,    0,  147,    2, 0x08 /* Private */,
-      16,    0,  148,    2, 0x08 /* Private */,
-      17,    0,  149,    2, 0x08 /* Private */,
-      18,    1,  150,    2, 0x08 /* Private */,
-      18,    0,  153,    2, 0x28 /* Private | MethodCloned */,
-      20,    0,  154,    2, 0x08 /* Private */,
-      21,    0,  155,    2, 0x08 /* Private */,
-      22,    0,  156,    2, 0x08 /* Private */,
-      23,    0,  157,    2, 0x08 /* Private */,
-      24,    0,  158,    2, 0x08 /* Private */,
-      25,    0,  159,    2, 0x08 /* Private */,
+       1,    0,  129,    2, 0x08 /* Private */,
+       3,    0,  130,    2, 0x08 /* Private */,
+       4,    0,  131,    2, 0x08 /* Private */,
+       5,    0,  132,    2, 0x08 /* Private */,
+       6,    0,  133,    2, 0x08 /* Private */,
+       7,    0,  134,    2, 0x08 /* Private */,
+       8,    0,  135,    2, 0x08 /* Private */,
+       9,    0,  136,    2, 0x08 /* Private */,
+      10,    0,  137,    2, 0x08 /* Private */,
+      11,    0,  138,    2, 0x08 /* Private */,
+      12,    0,  139,    2, 0x08 /* Private */,
+      13,    0,  140,    2, 0x08 /* Private */,
+      14,    0,  141,    2, 0x08 /* Private */,
+      15,    0,  142,    2, 0x08 /* Private */,
+      16,    0,  143,    2, 0x08 /* Private */,
+      17,    0,  144,    2, 0x08 /* Private */,
+      18,    0,  145,    2, 0x08 /* Private */,
+      19,    0,  146,    2, 0x08 /* Private */,
+      20,    1,  147,    2, 0x08 /* Private */,
+      20,    0,  150,    2, 0x28 /* Private | MethodCloned */,
+      22,    0,  151,    2, 0x08 /* Private */,
+      23,    0,  152,    2, 0x08 /* Private */,
+      24,    0,  153,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -127,10 +125,9 @@ static const uint qt_meta_data_PinBallv05b0001[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,   19,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,   21,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -150,25 +147,24 @@ void PinBallv05b0001::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         case 2: _t->createMenu(); break;
         case 3: _t->returnMenu(); break;
         case 4: _t->about(); break;
-        case 5: _t->gallery(); break;
-        case 6: _t->toggleDebugMode(); break;
-        case 7: _t->initGameMenu(); break;
-        case 8: _t->initFastMode(); break;
-        case 9: _t->initItemMode(); break;
-        case 10: _t->initCthulhuMode(); break;
-        case 11: _t->setting(); break;
-        case 12: _t->settingBackMenu(); break;
-        case 13: _t->destroyMenuChildButtons(); break;
-        case 14: _t->destroyMenuChildLabels(); break;
-        case 15: _t->destroyMenuChildEdit(); break;
-        case 16: _t->setBGMVolume((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 17: _t->setBGMVolume(); break;
-        case 18: _t->toggleBGM(); break;
-        case 19: _t->playReturnButtonSE(); break;
-        case 20: _t->playStepButtonSE(); break;
-        case 21: _t->Wardrobe(); break;
-        case 22: _t->Repertoire(); break;
-        case 23: _t->AchivementPage(); break;
+        case 5: _t->toggleDebugMode(); break;
+        case 6: _t->initGameMenu(); break;
+        case 7: _t->initFastMode(); break;
+        case 8: _t->initItemMode(); break;
+        case 9: _t->initCthulhuMode(); break;
+        case 10: _t->setting(); break;
+        case 11: _t->settingBackMenu(); break;
+        case 12: _t->gallery(); break;
+        case 13: _t->Wardrobe(); break;
+        case 14: _t->AchivementPage(); break;
+        case 15: _t->destroyMenuChildButtons(); break;
+        case 16: _t->destroyMenuChildLabels(); break;
+        case 17: _t->destroyMenuChildEdit(); break;
+        case 18: _t->setBGMVolume((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 19: _t->setBGMVolume(); break;
+        case 20: _t->toggleBGM(); break;
+        case 21: _t->playReturnButtonSE(); break;
+        case 22: _t->playStepButtonSE(); break;
         default: ;
         }
     }
@@ -199,13 +195,13 @@ int PinBallv05b0001::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 24)
+        if (_id < 23)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 24;
+        _id -= 23;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 24)
+        if (_id < 23)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 24;
+        _id -= 23;
     }
     return _id;
 }

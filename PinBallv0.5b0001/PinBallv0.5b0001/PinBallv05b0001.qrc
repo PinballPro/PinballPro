@@ -17,5 +17,6 @@
         <file>Resources/images/about/about.jpg</file>
         <file>Resources/images/icon/rankList.png</file>
         <file>Resources/images/icon/volume.png</file>
+        <file>Resources/images/ball/defaultBall.png</file>
     </qresource>
 </RCC>

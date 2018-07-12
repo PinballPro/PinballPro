@@ -45,7 +45,7 @@ PinBallv05b0001::PinBallv05b0001(QWidget *parent)
     setMouseTracking(true);
 	//this->grabKeyboard();
 	//this->grabMouse();该条开启后会有不可回避后果
-
+	view->setMouseTracking(true);
 	//设置全局光标
 	//设置鼠标光标
 	QCursor cursor;
@@ -375,15 +375,36 @@ void PinBallv05b0001::initGameMenu() {
 }
 
 void PinBallv05b0001::initFastMode() {
-
+	destroyMenuChildButtons();
+	destroyMenuChildLabels();
+	view->setRenderHint(QPainter::Antialiasing);
+	view->setCacheMode(QGraphicsView::CacheBackground);
+	view->setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
+	view->setDragMode(QGraphicsView::ScrollHandDrag);
+	baseController->startFastMode();
+	initScene();
 }
 
 void PinBallv05b0001::initItemMode() {
-
+	destroyMenuChildButtons();
+	destroyMenuChildLabels();
+	view->setRenderHint(QPainter::Antialiasing);
+	view->setCacheMode(QGraphicsView::CacheBackground);
+	view->setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
+	view->setDragMode(QGraphicsView::ScrollHandDrag);
+	baseController->startItemMode();
+	initScene();
 }
 
 void PinBallv05b0001::initCthulhuMode() {
-
+	destroyMenuChildButtons();
+	destroyMenuChildLabels();
+	view->setRenderHint(QPainter::Antialiasing);
+	view->setCacheMode(QGraphicsView::CacheBackground);
+	view->setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
+	view->setDragMode(QGraphicsView::ScrollHandDrag);
+	baseController->startKunMode();
+	initScene();
 }
 
 
@@ -443,9 +464,24 @@ void PinBallv05b0001::mousePressEvent(QMouseEvent *event) {
 	if (isDebug) {
 		statusBar()->showMessage(QString("MousePress:(%1,%2)").arg(QString::number(event->x()), QString::number(event->y())));
 	}
-	this->windowPos = this->pos();
-	QPoint mousePos = event->globalPos();
-	this->dPos = mousePos - windowPos;
+	if (baseController->isInGame) {
+		if (event->button() == Qt::LeftButton)
+		{
+			xMouse = event->pos().rx();
+			yMouse = event->pos().ry();
+			zMouse = sqrt((xMouse - 250)*(xMouse - 250) + (yMouse - 800)*(yMouse - 800));
+			xMouse = 15 * (xMouse-250) / zMouse;
+			yMouse = 15 * (yMouse-800) / zMouse;
+			baseController->dx = xMouse;
+			baseController->dy = yMouse;
+			if (baseController->isWait) {
+				baseController->changeDxDy();//改变发射方向然后继续
+			}
+		}
+	}
+		this->windowPos = this->pos();
+		QPoint mousePos = event->globalPos();
+		this->dPos = mousePos - windowPos;
 }
 
 void PinBallv05b0001::mouseReleaseEvent(QMouseEvent *event) {
@@ -527,9 +563,22 @@ void PinBallv05b0001::Wardrobe() {
 	connect(returnButton, &QToolButton::clicked, this, &PinBallv05b0001::gallery);
 }
 
-void PinBallv05b0001::Repertoire() {
+
+void PinBallv05b0001::AchivementPage() {
 	destroyMenuChildButtons();
 	destroyMenuChildLabels();
+
+	QLabel *highScoreLabel = new QLabel(this);
+	highScoreLabel->setText(QString("Highest Score: %1 bonus").arg(db_utils->currentPlayer->player_name));
+	highScoreLabel->setFont(QFont("Algerian", 18));
+	highScoreLabel->setStyleSheet("background:transparent;color:white;border:2px,groove,gray;border-radius:10px;padding:2px 4px;");
+	layout->addWidget(highScoreLabel, 2, 1, 2, 6,Qt::AlignCenter);
+	
+	QLabel *totalRoundsLabel = new QLabel(this);
+	totalRoundsLabel->setText(QString("Total Rounds: %1 bonus").arg(db_utils->currentPlayer->total_rounds));
+	totalRoundsLabel->setFont(QFont("Algerian", 18));
+	totalRoundsLabel->setStyleSheet("background:transparent;color:white;border:2px,groove,gray;border-radius:10px;padding:2px 4px;");
+	layout->addWidget(totalRoundsLabel, 4, 1, 2, 6, Qt::AlignCenter);
 
 	QToolButton *returnButton = new QToolButton(this);
 	returnButton->setIcon(QIcon(":/Resources/images/icon/left170.png"));
@@ -541,16 +590,45 @@ void PinBallv05b0001::Repertoire() {
 	connect(returnButton, &QToolButton::clicked, this, &PinBallv05b0001::gallery);
 }
 
-void PinBallv05b0001::AchivementPage() {
+void PinBallv05b0001::initScene() {
+	scene->setItemIndexMethod(QGraphicsScene::NoIndex);
+	scene->setSceneRect(-250, -400, 500, 800);
+}
+
+//游戏结束 重置controller中一切参数
+void PinBallv05b0001::GameOver() {
+	db_utils->saveGameInfo(baseController->score, baseController->round);
+	scene->clear();
+	scene->deleteLater();
+	this->scene = new QGraphicsScene(this);
+	this->view = new QGraphicsView(this);
+	baseController = new LogicController(*scene, this);
+
 	destroyMenuChildButtons();
 	destroyMenuChildLabels();
+	QLabel *scoreLabel = new QLabel(this);
+	scoreLabel->setText(QString("Your score: %1").arg(QString::number(baseController->score)));
+	scoreLabel->setFont(QFont("Algerian", 20));
+	scoreLabel->setStyleSheet("background:transparent;color:red");
+	layout->addWidget(scoreLabel, 1, 1, 3, 6, Qt::AlignCenter);
+	
+	QLabel *roundLabel = new QLabel(this);
+	roundLabel->setText(QString("Total Rounds: %1").arg(QString::number(baseController->round)));
+	roundLabel->setFont(QFont("Algerian", 20));
+	roundLabel->setStyleSheet("background:transparent;color:red;");
+	layout->addWidget(roundLabel, 4, 1, 3, 6, Qt::AlignCenter);
 
 	QToolButton *returnButton = new QToolButton(this);
 	returnButton->setIcon(QIcon(":/Resources/images/icon/left170.png"));
 	returnButton->setIconSize(QSize(100, 100));
 	returnButton->setObjectName("returnButton");
 	returnButton->setStyleSheet("QToolButton#returnButton{background:transparent}");
-	layout->addWidget(returnButton, 6, 3, 2, 2, Qt::AlignCenter);
+	layout->addWidget(returnButton, 7, 3, 2, 2, Qt::AlignCenter);
 	connect(returnButton, &QToolButton::clicked, this, &PinBallv05b0001::playReturnButtonSE);
-	connect(returnButton, &QToolButton::clicked, this, &PinBallv05b0001::gallery);
+	connect(returnButton, &QToolButton::clicked, this, &PinBallv05b0001::createMenu);
+
+	baseController->score = 0;
+	baseController->round = 1;
+	baseController->ballNumber = 1;
+	baseController->isInGame = false;
 }

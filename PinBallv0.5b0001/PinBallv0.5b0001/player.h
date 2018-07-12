@@ -5,6 +5,7 @@ public:
 	Player(QString player_name, QString password, QString highest_score, QString total_rounds);
 	Player();
 
+	QString getPassword();
 	QString player_name;
 	QString highest_score;
 	QString total_rounds;
